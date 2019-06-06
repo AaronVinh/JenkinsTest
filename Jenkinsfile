@@ -19,7 +19,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                timeout(time: 1, unit: 'MINUTES') {
+                    sh './health-check.sh'
+                }
             }
         }
     }
